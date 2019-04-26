@@ -121,7 +121,15 @@
   background: #ffdfdf;
 }
 
-.pretius--enhancedLovItem.mask .itemContainer > .itemContainerBody > div.tags > div.tag {
+.pretius--enhancedLovItem.mask.single .itemContainer > .itemContainerBody > div.tags > div.tag {
+  width: 100% !important;
+}
+
+.pretius--enhancedLovItem.mask.single .itemContainer > .itemContainerBody > div.tags > div.tag > .remove {
+  float: right;
+}
+
+.pretius--enhancedLovItem.mask.multiple .itemContainer > .itemContainerBody > div.tags > div.tag {
   /*display: inline-block;*/
   display: flex;
   max-width: 100%;
@@ -442,7 +450,7 @@
 }
 
 .ui-dialog.pretius--enhancedLovItem .rowsPerPageContainer select {
-  padding: 5px;
+  padding: 6px;
   line-height: 16px;
 }
 

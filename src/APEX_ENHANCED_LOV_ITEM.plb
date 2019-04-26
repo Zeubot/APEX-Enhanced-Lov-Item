@@ -1034,7 +1034,7 @@ create or replace package body APEX_ENHANCED_LOV_ITEM as
         '  "item":  $.extend('||t_page_item_to_json(p_item)||', {"icon": "'||v_item_icon_class||'"}),'  ||
         '  "param": '||  t_item_render_param_to_json(p_param)||','                                      ||
         '  "plugin": '|| t_plugin_to_json(p_plugin)          ||','                                      ||
-        '  "columns": '||f_queryGetColumnsJson||','                                                   ||
+        '  "columns": '||f_queryGetColumnsJson||','                                                     ||
         '  "attributes": '||v_item_attributes||','                                                      ||
         '  "apexVersion": "'||v_apex_version||'",'                                                      ||
         '  "debug": "'||v('DEBUG')||'" == "YES" ? true : false '                                        ||

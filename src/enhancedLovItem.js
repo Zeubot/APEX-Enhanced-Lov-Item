@@ -1427,7 +1427,7 @@ $.widget('pretius.enhancedLovItem', {
       information           = $('<div class="information hidden"> <div class="text"></div> </div>'),
       searchContainer       = $('<div class="searchContainer"></div>'),
       rowsPerPageContainer  = $('<div class="rowsPerPageContainer"></div>'),
-      rowsPerPageSelect     = $('<select></select'),
+      rowsPerPageSelect     = $('<select class="selectlist apex-item-select"></select'),
 
       searchInput           = $('<input type="text" placeholder="'+this.C_POPUP_SEARCH_PLACEHOLDER+'" class="empty">'),
       searchIcon            = $('<span class="fa fa-search search"></span>'),
@@ -2136,6 +2136,15 @@ $.widget('pretius.enhancedLovItem', {
       column_name  = this.options.columns[i].COLUMN_NAME;
       column_idx   = this.options.columns[i].IDX;
       column_alias = this._popupColumnIsConfigurationAvailable( column_name, 'heading' );
+
+      switch (column_alias){
+        case "D":
+          column_alias = popupTitleText;
+          break;
+        case "R":
+        column_alias = "ID";
+        break;
+      }
 
       if ( 
         this.pluginSettings.popup.isReportAdvancedConf
@@ -4483,8 +4492,12 @@ $.widget('pretius.enhancedLovItem', {
 
     apex.debug.log(this.logPrefix, '_maskCreateNew', 'classes', classes);
 
-    container
-      .addClass('pretius--enhancedLovItem mask');
+    container.addClass('pretius--enhancedLovItem mask');
+    if (this.pluginSettings.isMultipleSelection){
+      container.addClass('multiple');
+    }else{
+      container.addClass('single');
+    }
 
     for (var i in classes) {
       container.addClass( classes[i]+'-mask' );  
