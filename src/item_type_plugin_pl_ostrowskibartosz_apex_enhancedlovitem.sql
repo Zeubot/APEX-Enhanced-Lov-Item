@@ -27,7 +27,7 @@ wwv_flow_api.create_plugin(
  p_id=>wwv_flow_api.id(133975348538976887)
 ,p_plugin_type=>'ITEM TYPE'
 ,p_name=>'PL.OSTROWSKIBARTOSZ.APEX.ENHANCEDLOVITEM'
-,p_display_name=>'APEX Enhanced LOV item'
+,p_display_name=>'Enhanced LOV item'
 ,p_supported_ui_types=>'DESKTOP'
 ,p_supported_component_types=>'APEX_APPLICATION_PAGE_ITEMS:APEX_APPL_PAGE_IG_COLUMNS'
 ,p_javascript_file_urls=>wwv_flow_string.join(wwv_flow_t_varchar2(
@@ -35,8 +35,8 @@ wwv_flow_api.create_plugin(
 '#PLUGIN_FILES#mustache.js'))
 ,p_css_file_urls=>'#PLUGIN_FILES#enhancedLovItem.css'
 ,p_api_version=>2
-,p_render_function=>'#OWNER#.APEX_ENHANCED_LOV_ITEM.render'
-,p_ajax_function=>'#OWNER#.APEX_ENHANCED_LOV_ITEM.ajax'
+,p_render_function=>'#OWNER#.APP_CBT_PLG_ENHANCED_LOV.render'
+,p_ajax_function=>'#OWNER#.APP_CBT_PLG_ENHANCED_LOV.ajax'
 ,p_standard_attributes=>'VISIBLE:FORM_ELEMENT:SESSION_STATE:READONLY:ESCAPE_OUTPUT:SOURCE:ELEMENT:WIDTH:PLACEHOLDER:ICON:LOV:LOV_DISPLAY_NULL:CASCADING_LOV:FILTER:LINK'
 ,p_substitute_attributes=>true
 ,p_subscribe_plugin_settings=>true
