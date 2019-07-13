@@ -1,4 +1,4 @@
-create or replace package APEX_ENHANCED_LOV_ITEM as
+create or replace package APP_CBT_PLG_ENHANCED_LOV as
   procedure render (
       p_item   in            apex_plugin.t_item,
       p_plugin in            apex_plugin.t_plugin,
@@ -12,4 +12,4 @@ create or replace package APEX_ENHANCED_LOV_ITEM as
     p_param  in            apex_plugin.t_item_ajax_param,
     p_result in out nocopy apex_plugin.t_item_ajax_result 
   );
-end;
+end APP_CBT_PLG_ENHANCED_LOV;

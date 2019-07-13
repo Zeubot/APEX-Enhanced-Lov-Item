@@ -1,4 +1,4 @@
-create or replace package body APEX_ENHANCED_LOV_ITEM as
+create or replace package body APP_CBT_PLG_ENHANCED_LOV as
 
   g_app_id  number default v('APP_ID');
   g_page_id number default v('APP_PAGE_ID');
@@ -1104,4 +1104,4 @@ create or replace package body APEX_ENHANCED_LOV_ITEM as
     end if;
 
   end ajax;  
-end;
+end APP_CBT_PLG_ENHANCED_LOV;
