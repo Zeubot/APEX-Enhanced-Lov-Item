@@ -1,14 +1,37 @@
-# Oracle APEX Item Plugin - APEX Enhanced LOV item
+# Oracle APEX Item Plugin - Pretius APEX Enhanced LOV item
 
 APEX Enhanced LOV item is powerful combobox to select singular / multiple values in two modes: autocomplete and popup report. The plugin provides high customization possibilities through its attributes.
 
 ## Preview
 
-![Preview gif](preview.gif)
+![Preview gif](images/preview_demo.gif)
+
+## Table of Contents
+
+- [License](#license)
+- [Demo Application](#demo-application)
+- [Features at Glance](#features-at-glance)
+- [Roadmap](#roadmap)
+- [Install](#install)
+  - [Installation package](#installation-package)
+  - [Install procedure](#install-procedure)
+- [Usage Guide](#usage-guide)
+- [Plugin Settings](#plugin-settings)
+  - [Attributes](#component-settings)
+  - [Plugin Events](#plugin-events)
+  - [Translations](#translations)
+- [Changelog](#changelog)
+
+
+## License
+MIT
+
+## Demo Application
+[https://apex.oracle.com/pls/apex/f?p=111865:1](https://apex.oracle.com/pls/apex/f?p=111865:1)
+
 
 ## Features at Glance
-* The plugin is available under MIT License
-* First supported version is Oracle APEX is 5.1+
+* compatible with Oracle APEX 5.1, 18.x, 19.x
 * The plugin has two modes: Autocomplete and popup report
 * Autocomplete custom filtering rules can be defined as SQL where clause
 * Autocomplete can render data in custom HTML template returned from JavaScript annonymouse function
@@ -17,6 +40,7 @@ APEX Enhanced LOV item is powerful combobox to select singular / multiple values
 
 ## Roadmap
 * RTL support
+* Floating label template
 * Mobile devices support
 * Show only selected in autocomplete mode
 * Support for pasting values (for example from Excell file)
@@ -31,9 +55,9 @@ APEX Enhanced LOV item is powerful combobox to select singular / multiple values
 
 ## Install
 
-### Installaction package
-* `APEX_ENHANCED_LOV_ITEM.sql` - the plugin package body
-* `APEX_ENHANCED_LOV_ITEM.plb` - the plugin package specification
+### Installation package
+* `APEX_ENHANCED_LOV_ITEM.sql` - the plugin package specification
+* `APEX_ENHANCED_LOV_ITEM.plb` - the plugin package body
 * `item_type_plugin_pl_ostrowskibartosz_apex_enhancedlovitem.sql` - the plugin installation file for Oracle APEX 5.1 or higher
 * `example_app.sql` - the plugin example app exported from apex.oracle.com (Oracle APEX 19.1). Application uses `emp` table which is available at apex.oracle.com.
 
@@ -41,27 +65,32 @@ APEX Enhanced LOV item is powerful combobox to select singular / multiple values
 To successfully install the plugin follow those steps:
 1. Install package `APEX_ENHANCED_LOV_ITEM` in Oracle APEX Schema
 1. Install the plugin file `item_type_plugin_pl_ostrowskibartosz_apex_enhancedlovitem.sql`
-1. Create APEX page item type Enhanced LOV item
-1. Provide SQL query and mark display column with alias `d` and return column with alias `r` `*`
-1. Explore the plugin capabilities by reading Help Texts within APEX Application Builder
-1. Configure the plugin according to your requirements
 
-`*` the plugin uses aliases `d` and `r` to recognize which column should be returned and which is general display column. **Don't use aliases enclosed with quote character!** See example below:
+## Usage Guide
+
+1. Create APEX item `PX_NAME` with type set to `APEX Enhanced LOV Item [Plug-in]`
+1. Provide SQL query and mark `display` column with alias `d` and `return` column with alias `r` *
+1. Explore the plugin capabilities by reading Help Texts within APEX Application Builder
+1. Configure the plugin according to your requirements  
+
+`*` the plugin uses aliases `d` and `r` to recognize which column should be returned and which is general display column. Don't use aliases enclosed with quote character! See example below:
 
 ```sql
 select
-  emp.empno r,
-  emp.ename d,
-  emp.*
+  e.empno r,
+  e.ename d,
+  e.*
 from
-  emp 
+  emp e
 ```
 
 ## Plugin Settings
 
-### Component settings
+### Attributes
 
 Detailed information about how to use every attribute of the plugin is presented in built-in help texts in APEX Application Builder.
+
+![Preview gif](images/preview_helptext.gif)
 
 * **General Settings**
   * **Autocomplete** - autocomplete mode is available to end-user
@@ -155,21 +184,60 @@ Each popup report event has access through this.data to following information:
 };
 ```
 
-## Demo Application
-[https://apex.oracle.com/pls/apex/f?p=111865:1](https://apex.oracle.com/pls/apex/f?p=111865:1)
+### Translations
+
+To add new translations use `Shared Componentes> Globalization > Text Messages`.
+
+Translation code | Translation text
+-----------------|-----------------
+PAELI_POPUP_SEARCH_PLACEHOLDER | Enter a search term
+PAELI_POPUP_BTN_SELECT_TEXT | Select
+PAELI_POPUP_SHOW_SELECTED_LABEL | Show only selected
+PAELI_POPUP_TEXT_ROWS_SELECTED | All results (%0) on this page has been selected.
+PAELI_POPUP_TEXT_NO_DATA_FOUND_SEARCH | No data found for search term "%0".
+PAELI_POPUP_TEXT_NO_DATA_FOUND_QUERY | Dictionary has no data to render.
+PAELI_POPUP_TEXT_CLEAR_FILTERING | Click <a href="javascript: void(0)" class="clearFiltering">here</a> to clear filtering.
+PAELI_POPUP_TEXT_UNSAVED_CHANGES | You have selected %0 values. Closing without saving will not save selected values.
+PAELI_POPUP_TEXT_SEACH_IN_SELECTED | You have filtered %0 row(s) from %1 selected row(s). <br/>Click <a href="javascript: void(0)" class="showSelected">here to get back to all selected rows.
+PAELI_POPUP_TEXT_FILTERED_INFO | %0 results found for search term "%1".
+PAELI_POPUP_TEXT_EXTRA_VALUE | Value "%0" is not within dictionary.
+PAELI_PROMPT_MENU_EXPAND_TITLE | Show or hide all tags
+PAELI_PROMPT_MENU_SORT_TITLE | Sort tags
+PAELI_PROMPT_MENU_CLEAR_TITLE | Clear all selected values
+PAELI_PROMPT_TEXT_MINIMAL_INPUT_LENGTH_X | Please enter %0 or more characters.
+PAELI_PROMPT_TEXT_MINIMAL_INPUT_LENGTH_0 | Start typing to get results.
+PAELI_PROMPT_TEXT_NO_DATA_FOUND | No data found.
+PAELI_PROMPT_TEXT_SEARCHING | Searching...
+PAELI_PROMPT_TEXT_RAPID_SELECTION | Start typing to select more...
+PAELI_PROMPT_TEXT_LOAD_MORE | Load more...
+PAELI_TAGS_LIMITED_OTHERS | and %0 more...
+PAELI_TAGS_LIMITED_0 | %0 selected
+PAELI_POPUP_PAGINATION_PREV | Previous
+PAELI_POPUP_PAGINATION_NEXT | Next
+PAELI_POPUP_HEADER_SORT_ASC_TITLE | Sort ascending
+PAELI_POPUP_HEADER_SORT_DESC_TITLE | Sort descending
+PAELI_POPUP_TEXT_SEARCHING | Waiting for results...
 
 ## Changelog
 
+### 1.0.4
+* `PL/SQL` all strings inputed via search field is being escaped using ```APEX_ESCAPE.HTML``` - fix for potential XSS
+* `PL/SQL` value from session on page load is being escaped using ```APEX_ESCAPE.HTML``` - fix for potential XSS
+* `PL/SQL` Rows in which `r` columns is null is not available in `autocomplete` and `popup` mode - value in column `r` must be unique and can't be null
+* `JS` Typo in `PAELI_POPUP_TEXT_ROWS_SELECTED` has been fixed
+* `Example application` supporting objects has been updated (install script fixed, deinstall script created)
+
+
 ### 1.0.3
-* `Rapid Selection` attribute is now dependent on the plugin selection mode (multiple / singular). In singular selection unchecked `Rapid Selection` attribute results in closing autocomplete after selecting value,
-* the plugin mask (apex item visualization) is focusable and support `keypress` and `keydown` events when focused. 
+* `Plugin` `Rapid Selection` attribute is now dependent on the plugin selection mode (multiple / singular). In singular selection unchecked `Rapid Selection` attribute results in closing autocomplete after selecting value,
+* `Plugin` `Custom Autocomplete Template` attribute help text has been updated with reference to `this.data.selected` which indicates that particular row is already selected by end-user,
+* `Plugin` new component attribute `Autocomplete Rows To Fetch` is available to define,
+* `Plugin` new component attribute `Autocomplete Results Max Height` is available to define,
+* `Plugin` in case of new component attributes new translatable text `PAELI_PROMPT_TEXT_LOAD_MORE` is now available.
+* `PL/SQL` autocomplete pagination (lazy loading) has been fixed to return given number of rows (previously it was duplicating last row from requested set of data)
+* `JavaScript` the plugin mask (apex item visualization) is focusable and support `keypress` and `keydown` events when focused. 
   * pressing `Down Arrow Key` results in opening autocomplete
   * pressing any letter key results in opening autocomplete and peforming search
-* `Custom Autocomplete Template` attribute help text has been updated with reference to `this.data.selected` which indicates that particular row is already selected by end-user,
-* new component attribute `Autocomplete Rows To Fetch` is available to define,
-* new component attribute `Autocomplete Results Max Height` is available to define,
-* autocomplete pagination (lazy loading) has been fixed to return given number of rows (previously it was duplicating last row from requested set of data)
-* in case of new component attributes new translatable text `PAELI_PROMPT_TEXT_LOAD_MORE` is now available.
 
 ### 1.0.1, 1.0.2
 minor fixes for first release
@@ -177,5 +245,17 @@ minor fixes for first release
 ### 1.0.0 
 Initial Release
 
-## License
-MIT
+## Known issues
+* [Inline dialog bug](https://github.com/bostrowski/APEX-Enhanced-Lov-Item/issues/7)
+
+## About Author
+Author | Github | Twitter | E-mail
+-------|--------|---------|-------
+Bartosz Ostrowski | [@bostrowski](https://github.com/bostrowski) | [@bostrowsk1](https://twitter.com/bostrowsk1) | bostrowski@pretius.com
+
+## About Pretius
+Pretius Sp. z o.o. Sp. K.
+
+Address | Website | E-mail
+--------|---------|-------
+Przy Parku 2/2 Warsaw 02-384, Poland | [http://www.pretius.com](http://www.pretius.com) | [office@pretius.com](mailto:office@pretius.com)
